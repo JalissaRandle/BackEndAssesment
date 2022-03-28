@@ -1,15 +1,3 @@
-let friendId = 4
+const req = require('express/lib/request')
 
-module.exports = {
-
-    createHouse: (req, res) =>{
-        let { address, price, imageURL } = req.body
-        let newHouse = {
-            id: friendId,
-            
-            price,
-            imageURL
-        }
-        houses.push(newHouse)
-        res.status(200).send(frends)
-        frienddD++
+let friendID = 1

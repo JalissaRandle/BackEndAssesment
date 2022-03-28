@@ -5,12 +5,12 @@ const cors = require("cors");
 const app = express();
 app.use(cors());
 const baseURL = `http://localhost:4000/api/friends`
-const createfriend = body => axios.post(baseURL, body).then(housesCallback).catch(errCallback)
-const deletefriend= id => axios.delete(`${baseURL}/${id}`).then(housesCallback).catch(errCallback)
-const updateFriendlist = (id, type) => axios.put(`${baseURL}/${id}`, {type}).then(housesCallback).catch(errCallback)
+const createfriend = body => axios.post(baseURL, body).then(friendsCallback).catch(errCallback)
+const deletefriend= id => axios.delete(`${baseURL}/${id}`).then(friendsCallback).catch(errCallback)
+const updateFriendlist = (id, type) => axios.put(`${baseURL}/${id}`, {type}).then(friendsCallback).catch(errCallback)
+const getFriend = axios.get(baseURL).then(friendsCallback).catch(errCallback)
 
-
-const{ deletefriend, createfriend, updateFriendlist} = require('./controller')
+// const{ getFriend, deletefriend, createfriend, updateFriendlist} = require('./controller')
 
 
 app.use(express.json()); // When we want to be able to accept JSON.
@@ -40,7 +40,7 @@ app.get("/api/fortune/", (req, res) => {
 
 
 
-
+app.get('/api/houses', getFriend)
 app.post('/api/houses', createfriend)
 app.put('/api/houses/:id', updateFriendlist)
 app.delete('/api/houses/:id', deletefriend)
